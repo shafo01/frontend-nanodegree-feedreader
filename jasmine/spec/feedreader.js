@@ -64,12 +64,36 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        let body;
+        beforeEach(function() {
+            body = document.getElementsByTagName('body')[0];
+        });
+
+        it('hidden by default', function() {
+            expect(body).toHaveClass('menu-hidden');
+        });
 
         /* TODO: Write a test that ensures the menu changes
          * visibility when the menu icon is clicked. This test
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
+
+        /**
+         * I followed along this tutorial whilst completing this task: https://gist.github.com/davilious/9503539
+         */
+        it('changes visibility when the menu icon is clicked', function() {
+            let menuIcon = $('.menu-icon-link');
+
+            //click first time toggleClass
+            menuIcon.trigger('click');
+            expect(body).not.toHaveClass('menu-hidden')
+            //click second time
+            menuIcon.trigger('click');
+            expect(body).toHaveClass('menu-hidden')
+
+
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -81,6 +105,7 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+
 
     });
 
