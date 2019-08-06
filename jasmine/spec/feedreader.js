@@ -106,6 +106,10 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
+        /**
+         * Reduce redundant codes by using Jasmine's beforeEach function
+         */
+
         beforeEach(function(done) {
             loadFeed(0, function() {
                 done();
@@ -134,6 +138,10 @@ $(function() {
 
         let currentContent;
 
+        /*
+         * Before the test is called update the content with a feed.
+         */
+
         beforeEach(function(done) {
 
             loadFeed(0, function() {
@@ -141,6 +149,11 @@ $(function() {
             });
 
         });
+
+        /*
+         * After the test is called update the content with content from another feed.
+         * After the set of content (for the new feed) is loaded test whether the content has changed or not.
+         */
 
         afterEach(function(done) {
 
@@ -151,9 +164,6 @@ $(function() {
             });
 
         });
-
-
-
 
         it("changes content", function(done) {
             currentContent = document.getElementsByClassName("feed")[0].innerHTML;
