@@ -118,7 +118,7 @@ $(function() {
         });
 
         it('has at least a single entry', function(done) {
-            expect(document.getElementsByClassName("feed")[0].childNodes.length > 0).toBe(true);
+            expect(document.querySelectorAll('.feed .entry').length).toBeGreaterThan(0);
             done();
         });
 
