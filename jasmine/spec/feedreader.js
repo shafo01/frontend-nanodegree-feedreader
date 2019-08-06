@@ -136,7 +136,8 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-        let currentContent;
+        let oldContent;
+        let newContent;
 
         /*
          * Before the test is called update the content with a feed.
@@ -145,34 +146,23 @@ $(function() {
         beforeEach(function(done) {
 
             loadFeed(0, function() {
-                done();
-            });
+                oldContent = document.getElementsByClassName("feed")[0].innerHTML;
 
-        });
+                loadFeed(1, function() {
+                    newContent = document.getElementsByClassName("feed")[0].innerHTML;
+                    done();
+                });
 
-        /*
-         * After the test is called update the content with content from another feed.
-         * After the set of content (for the new feed) is loaded test whether the content has changed or not.
-         */
-
-        afterEach(function(done) {
-
-            loadFeed(1, function() {
-                let newContent = document.getElementsByClassName("feed")[0].innerHTML;
-                expect(currentContent === newContent).not.toBe(true);
-                done();
             });
 
         });
 
         it("changes content", function(done) {
-            currentContent = document.getElementsByClassName("feed")[0].innerHTML;
+            expect(oldContent === newContent).not.toBe(true);
             done();
 
         });
 
-
-
-
     });
+
 }());
